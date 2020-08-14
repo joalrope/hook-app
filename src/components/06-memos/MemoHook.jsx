@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useCounter } from '../../hooks/useCounter';
 
+import { useCounter } from '../../hooks/useCounter';
 import { heavyProcess } from '../../helpers/heavyProcess';
 
 import '../../index.css';
