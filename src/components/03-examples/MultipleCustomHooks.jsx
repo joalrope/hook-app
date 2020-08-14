@@ -2,17 +2,13 @@ import React from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import { useCounter } from '../../hooks/useCounter';
 
-import '../../index.css'
+import '../../index.css';
 
 export const MultipleCustomHooks = () => {
 
     const { counter, increment } = useCounter(1);
 
-    const { loading, data, error } =  useFetch(`https://www.breakingbadapi.com/api/quotes/${ counter }`);
-
-    if (error) {
-        console.log(error)
-    }
+    const { loading, data } =  useFetch(`https://www.breakingbadapi.com/api/quotes/${ counter }`);
 
     const { author, quote } = !!data && data[0];
 
@@ -46,5 +42,5 @@ export const MultipleCustomHooks = () => {
             </button>
 
         </div>
-    )
+    );
 }

@@ -17,6 +17,6 @@ export const CounterWithCustomHook = () => {
             <button className = 'btn btn-outline' onClick = { reset }> Reset </button>
             <button className = 'btn btn-danger'  onClick = { () => decrement(2) }> -1 </button>
         </>
-    )
+    );
 }
 

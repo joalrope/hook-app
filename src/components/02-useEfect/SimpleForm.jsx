@@ -2,14 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Message } from './Message';
 
-import '../../index.css'
+import '../../index.css';
 
 export const SimpleForm = () => {
 
     const [formstate, setFormstate] = useState({
         name: '',
         email: ''
-    })
+    });
 
     const { name, email } = formstate;
 
@@ -65,5 +65,5 @@ export const SimpleForm = () => {
 
             { name === '123' && <Message />}
         </>
-    )
+    );
 }

@@ -1,7 +1,7 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React from 'react';
+import { useEffect, useState } from 'react';
 
-import '../../index.css'
+import '../../index.css';
 
 export const Message = () => {
 
@@ -26,7 +26,7 @@ export const Message = () => {
             window.removeEventListener('mousemove', mouseMove);
         }
 
-    }, [ ])
+    }, [ ]);
 
     return (
         <div>
@@ -35,6 +35,6 @@ export const Message = () => {
                 x: { x } y: { y } 
             </p>
         </div>
-    )
+    );
 }
 

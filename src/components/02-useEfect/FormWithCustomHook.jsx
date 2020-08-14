@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from '../../hooks/useForm';
 
-import '../../index.css'
+import '../../index.css';
 
 export const FormWithCustomHook = () => {
 
@@ -68,5 +68,5 @@ export const FormWithCustomHook = () => {
             </button>
 
         </form>
-    )
+    );
 }
