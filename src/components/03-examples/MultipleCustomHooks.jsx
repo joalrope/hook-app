@@ -38,7 +38,7 @@ export const MultipleCustomHooks = () => {
                 className="btn btn-primary"
                 onClick={ increment } 
             >
-                    Next Quote { counter + 1 }
+                    Next Quote
             </button>
 
         </div>
