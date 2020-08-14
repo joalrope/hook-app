@@ -1,7 +1,8 @@
 import React from 'react';
-import '../../index.css'
 import { useState, useEffect } from 'react';
 import { Message } from './Message';
+
+import '../../index.css'
 
 export const SimpleForm = () => {
 
