@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Child = ({ step, increment }) => {
+export const Child = React.memo(({ step, increment }) => {
 
     console.log('  Me volví a generar :(  ');
 
@@ -12,4 +12,4 @@ export const Child = ({ step, increment }) => {
             { step }
         </button>
     )
-}
+})

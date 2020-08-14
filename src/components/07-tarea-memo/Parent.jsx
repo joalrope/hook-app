@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Child } from './Child';
 
 export const Parent= () => {
@@ -6,10 +6,14 @@ export const Parent= () => {
     const steps = [2,4,6,8,10];
     const [accumulated, setValor] = useState(0);
 
-    const increment = ( step ) => {
-        setValor( accumulated + step )
-    }
+    /* const increment = useCallback( ( step ) => {
+        setValor( accumulated + step );
+    }, ); */
 
+    const increment = useCallback( (step) => {
+        setValor( v => v + step );
+    }, [setValor]);
+    
 
     return (
         <div>
