@@ -1,26 +1,48 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { todoReducer } from './todoReducer';
 import { useForm } from '../../hooks/useForm';
 
 import './styles.css';
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Aprender React',
-    done: false
-}];
+const init = () => {
+    return JSON.parse(localStorage.getItem('todos')) || [];
+}
 
 
 export const TodoApp = () => {
-
-    const [ todos, dispatch ] = useReducer(todoReducer, initialState);
+    
+    const [ todos, dispatch ] = useReducer(todoReducer, [], init );
     
     const [ { description }, handleInputChange, reset ] = useForm({
         description: ''});
+        
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
+
+    const handleDelete = (todoId) => {
+    
+        dispatch({
+            type: 'delete',
+            payload: todoId
+        });
+    }
+    
+    const handleToggle = (todoId) => {
+    
+        dispatch({
+            type: 'toggle',
+            payload: todoId
+        });
+    }
 
     const handleSubmit = (e) => {
         
         e.preventDefault();
+
+        if (description.trim().length < 1) {
+            return;
+        }
 
         const newTodo = {
             id: new Date().getTime(),
@@ -55,10 +77,16 @@ export const TodoApp = () => {
                                     key={todo.id}
                                     className= "list-group-item"
                                 >
-                                    <p className="text-center"> { i + 1 }. { todo.desc }  </p>
+                                    <p 
+                                        className={ ` ${ todo.done && 'complete'} ` }
+                                        onClick= { () =>  handleToggle(todo.id) }
+                                        >
+                                            { i + 1 }. { todo.desc }
+                                    </p>
 
                                     <button
                                         className="btn btn-danger btn-sm"
+                                        onClick= { () => handleDelete(todo.id) }
                                     >
                                         Borrar
                                     </button>
