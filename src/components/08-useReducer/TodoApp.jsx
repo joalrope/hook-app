@@ -1,4 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
+
+import { TodoList } from './components/TodoList';
 import { todoReducer } from './todoReducer';
 import { useForm } from '../../hooks/useForm';
 
@@ -13,28 +15,11 @@ export const TodoApp = () => {
     
     const [ todos, dispatch ] = useReducer(todoReducer, [], init );
     
-    const [ { description }, handleInputChange, reset ] = useForm({
-        description: ''});
-        
+    const [ { description }, handleInputChange, reset ] = useForm({ description: '' });
+   
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
-
-    const handleDelete = (todoId) => {
-    
-        dispatch({
-            type: 'delete',
-            payload: todoId
-        });
-    }
-    
-    const handleToggle = (todoId) => {
-    
-        dispatch({
-            type: 'toggle',
-            payload: todoId
-        });
-    }
 
     const handleSubmit = (e) => {
         
@@ -61,39 +46,38 @@ export const TodoApp = () => {
 
     }
 
+    const handleDelete = (todoId) => {
+
+        dispatch({
+            type: 'delete',
+            payload: todoId
+        });
+    }
+    
+    const handleToggle = (todoId) => {
+    
+        dispatch({
+            type: 'toggle',
+            payload: todoId
+        });
+    }
+
+
     return (
         <div>
-            <h1>TodoApp ( { todos.length } )</h1>
+            <h1>TodoApp ({ todos.length })</h1>
             <hr/>
 
             <div className="row">
                 <div className="col-7">
                     <h4> Lista de TODO's</h4>
                     <hr/>
-                    <ul className="list-group list-group-flush">
-                        {
-                            todos.map( (todo, i) =>  
-                                <li 
-                                    key={todo.id}
-                                    className= "list-group-item"
-                                >
-                                    <p 
-                                        className={ ` ${ todo.done && 'complete'} ` }
-                                        onClick= { () =>  handleToggle(todo.id) }
-                                        >
-                                            { i + 1 }. { todo.desc }
-                                    </p>
-
-                                    <button
-                                        className="btn btn-danger btn-sm"
-                                        onClick= { () => handleDelete(todo.id) }
-                                    >
-                                        Borrar
-                                    </button>
-                                </li>
-                            )
-                        }
-                    </ul>
+                    {/* TodoList, todos, handleDelete, handleToggle */}
+                    <TodoList
+                        todos = { todos }
+                        handleDelete = { handleDelete }
+                        handleToggle = { handleToggle }
+                    />
                 </div>
 
                 <div className="col-5">
@@ -117,10 +101,7 @@ export const TodoApp = () => {
                         >
                             Agregar
                         </button>
-
                     </form>
-
-
                 </div>
             </div>
         </div>
