@@ -13,7 +13,7 @@ export const TodoList = ({ todos, handleDelete, handleToggle }) => {
                     <TodoListItem 
                         key= { todo.id }
                         todo = { todo }
-                        i = { i }
+                        index = { i }
                         handleDelete = { handleDelete }
                         handleToggle = { handleToggle }
                     />
@@ -23,7 +23,8 @@ export const TodoList = ({ todos, handleDelete, handleToggle }) => {
     )
 }
 
-TodoListItem.propTypes = {
-    todos: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+TodoList.propTypes = {
+    todos: PropTypes.array.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    handleToggle: PropTypes.func.isRequired
 }
